@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PROJECT 90 Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="config.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-badge">
+          <span class="brand-badge-main">P</span>
+          <span class="brand-badge-accent">90</span>
+        </div>
+        <div>
+          <h1>PROJECT 90</h1>
+          <p>Summer starts now</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-link active" data-section="dashboard">Dashboard</button>
+        <button class="nav-link" data-section="training">Training</button>
+        <button class="nav-link" data-section="tracker">Tracker</button>
+        <button class="nav-link" data-section="nutrition">Nutrition</button>
+        <button class="nav-link" data-section="mission">Mission</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <p>Built for Jan-Mattes & Jonas</p>
+        <p class="version-info" id="versionInfo">Version v3.0-beta</p>
+        <p class="version-info" id="lastUpdateInfo">Last Update: 09.03.2026</p>
+        <p class="version-info" id="modeInfo">Mode: Local Test</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <section id="dashboard" class="section active">
+        <div class="hero-card card">
+          <div>
+            <p class="eyebrow">PROJECT 90</p>
+            <h2>Build discipline. Build strength. Summer starts now.</h2>
+            <p class="hero-text">
+              Euer Fitness-Dashboard für Muskelaufbau, Definition, Bauchtraining,
+              Cardio, Streaks, Punkte und tägliche Übersicht.
+            </p>
+          </div>
+
+          <div class="hero-streak">
+            <span class="flame">🔥</span>
+            <div>
+              <p class="mini-label">Team Status</p>
+              <h3 id="teamSummary">Team Streak: 0</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="card today-card">
+          <div class="card-header">
+            <h3 id="todayTitle">Heute</h3>
+            <span class="pill" id="todayDate">--</span>
+          </div>
+          <p id="todayWorkout" class="today-workout-text">Loading...</p>
+          <p id="todayHint" class="small-note">Heute zählt für eure Streak nur, wenn es ein geplanter Trainingstag ist.</p>
+        </div>
+
+        <div class="grid three">
+          <div class="card highlight-card">
+            <div class="card-header">
+              <h3>🔥 Streak Jan-Mattes</h3>
+              <span class="pill">Plantagebunden</span>
+            </div>
+            <div class="person-box">
+              <p class="person-name">Jan-Mattes</p>
+              <h4 id="jmStreak">0 Tage</h4>
+              <p class="tiny-meta" id="jmLastWorkout">Letzter Check-in: —</p>
+            </div>
+          </div>
+
+          <div class="card highlight-card blue-glow">
+            <div class="card-header">
+              <h3>🔥 Streak Jonas</h3>
+              <span class="pill">Plantagebunden</span>
+            </div>
+            <div class="person-box">
+              <p class="person-name">Jonas</p>
+              <h4 id="jonasStreak">0 Tage</h4>
+              <p class="tiny-meta" id="jonasLastWorkout">Letzter Check-in: —</p>
+            </div>
+          </div>
+
+          <div class="card highlight-card team-glow">
+            <div class="card-header">
+              <h3>🤝 Team Streak</h3>
+              <span class="pill">Beide müssen liefern</span>
+            </div>
+            <div class="person-box">
+              <p class="person-name">Gemeinsam</p>
+              <h4 id="teamStreak">0 Tage</h4>
+              <p class="tiny-meta">Reset, wenn einer einen geplanten Tag verpasst</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <div class="card-header">
+              <h3>🏆 Punkte</h3>
+              <span class="pill">Gamified</span>
+            </div>
+            <div class="person-stats">
+              <div class="person-box">
+                <p class="person-name">Jan-Mattes</p>
+                <h4 id="jmPoints">0</h4>
+              </div>
+              <div class="person-box">
+                <p class="person-name">Jonas</p>
+                <h4 id="jonasPoints">0</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>⭐ Level</h3>
+              <span class="pill">Progress</span>
+            </div>
+
+            <div class="level-row">
+              <div>
+                <p class="person-name">Jan-Mattes</p>
+                <h4 id="jmLevel">Starter</h4>
+              </div>
+              <div>
+                <p class="person-name">Jonas</p>
+                <h4 id="jonasLevel">Starter</h4>
+              </div>
+            </div>
+
+            <div class="levels-list">
+              <div>0–39 Punkte → Starter</div>
+              <div>40–79 Punkte → Consistency</div>
+              <div>80–129 Punkte → Discipline</div>
+              <div>130–189 Punkte → Summer Form</div>
+              <div>190+ Punkte → Project Beast</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <div class="card-header">
+              <h3>📅 Wochenfortschritt</h3>
+              <span class="pill">4 Sessions</span>
+            </div>
+
+            <div class="week-progress">
+              <div class="progress-top">
+                <span id="weekText">0 / 4 Workouts geschafft</span>
+                <span id="weekPercent">0%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+            </div>
+
+            <div class="week-days">
+              <div class="day-chip" id="chip-mon">Mo</div>
+              <div class="day-chip" id="chip-wed">Mi</div>
+              <div class="day-chip" id="chip-fri">Fr</div>
+              <div class="day-chip" id="chip-sun">So</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>🧠 Quick Status</h3>
+              <span class="pill">Live Sync</span>
+            </div>
+            <div class="quick-status">
+              <div class="mini-card status-card">
+                <h4>Jan-Mattes heute</h4>
+                <p id="jmTodayStatus">Noch kein Eintrag</p>
+              </div>
+              <div class="mini-card status-card">
+                <h4>Jonas heute</h4>
+                <p id="jonasTodayStatus">Noch kein Eintrag</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="training" class="section">
+        <div class="section-title">
+          <p class="eyebrow">Training</p>
+          <h2>Euer Wochenplan</h2>
+        </div>
+
+        <div class="grid two">
+          <div class="card workout-card" id="workout-card-1">
+            <div class="workout-top">
+              <span class="day-badge">Montag</span>
+              <span class="pill">Solo</span>
+            </div>
+            <h3>Oberkörper</h3>
+            <ul>
+              <li>Liegestütze – 3 × 8–12</li>
+              <li>Stuhl Dips – 3 × 10–12</li>
+              <li>Pike Push-ups – 3 × 6–10</li>
+              <li>Shoulder Taps – 3 × 20</li>
+              <li>Plank – 3 × 30–45 Sek.</li>
+            </ul>
+          </div>
+
+          <div class="card workout-card" id="workout-card-3">
+            <div class="workout-top">
+              <span class="day-badge">Mittwoch</span>
+              <span class="pill">Solo</span>
+            </div>
+            <h3>Core / Sixpack</h3>
+            <ul>
+              <li>Crunches – 3 × 20</li>
+              <li>Leg Raises – 3 × 10–15</li>
+              <li>Mountain Climbers – 3 × 25</li>
+              <li>Russian Twists – 3 × 20</li>
+              <li>Plank – 3 × 40 Sek.</li>
+            </ul>
+          </div>
+
+          <div class="card workout-card" id="workout-card-5">
+            <div class="workout-top">
+              <span class="day-badge">Freitag</span>
+              <span class="pill">Solo</span>
+            </div>
+            <h3>Oberkörper + Core</h3>
+            <ul>
+              <li>Liegestütze – 3 × 10–12</li>
+              <li>Squats – 3 × 20</li>
+              <li>Chair Dips – 3 × 10</li>
+              <li>Plank – 3 × 40 Sek.</li>
+              <li>Leg Raises – 3 × 12</li>
+            </ul>
+          </div>
+
+          <div class="card workout-card" id="workout-card-0">
+            <div class="workout-top">
+              <span class="day-badge">Sonntag</span>
+              <span class="pill">Zusammen</span>
+            </div>
+            <h3>Cardio / Ausdauer</h3>
+            <ul>
+              <li>2–3 km Joggen oder Laufen</li>
+              <li>Alternativ Fahrrad oder Intervall-Sprints</li>
+              <li>Ziel: Ausdauer + Motivation + Routine</li>
+              <li>Danach kurz dehnen</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="tracker" class="section">
+        <div class="section-title">
+          <p class="eyebrow">Tracker</p>
+          <h2>Punkte, Streaks und Fortschritt</h2>
+        </div>
+
+        <div class="grid two">
+          <div class="card tracker-card">
+            <h3>Jan-Mattes</h3>
+            <div class="button-group">
+              <button class="action-btn" onclick="addWorkout('jm')">+ Home Workout</button>
+              <button class="action-btn alt" onclick="addRun('jm')">+ Cardio / Run</button>
+              <button class="action-btn subtle" onclick="addStreakBonus('jm')">+ Streak Bonus</button>
+            </div>
+            <p class="small-note">Nur 1 Check-in pro Tag möglich.</p>
+          </div>
+
+          <div class="card tracker-card">
+            <h3>Jonas</h3>
+            <div class="button-group">
+              <button class="action-btn" onclick="addWorkout('jonas')">+ Home Workout</button>
+              <button class="action-btn alt" onclick="addRun('jonas')">+ Cardio / Run</button>
+              <button class="action-btn subtle" onclick="addStreakBonus('jonas')">+ Streak Bonus</button>
+            </div>
+            <p class="small-note">Nur 1 Check-in pro Tag möglich.</p>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>⚙️ Regeln</h3>
+            <ul class="rules-list">
+              <li>Home Workout = +10 Punkte</li>
+              <li>Cardio / gemeinsames Training = +15 Punkte</li>
+              <li>7 Tage Streak Bonus = +20 Punkte</li>
+              <li>Eintrag nur 1x pro Person pro Tag</li>
+              <li>Einzel- und Team-Streak zählen nur an Mo / Mi / Fr / So</li>
+              <li>Wochenfortschritt resetet automatisch zum Wochenstart</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>🔄 Verwaltung</h3>
+            <div class="button-group">
+              <button class="action-btn danger" onclick="resetWeek()">Woche resetten</button>
+              <button class="action-btn danger soft" onclick="resetAllData()">Alles zurücksetzen</button>
+            </div>
+            <p class="small-note">
+              State wird lokal gespeichert und mit Supabase synchronisiert.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="nutrition" class="section">
+        <div class="section-title">
+          <p class="eyebrow">Nutrition</p>
+          <h2>Einfaches Ernährungssystem für Definition & Bauch</h2>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>🥩 Grundregeln</h3>
+            <ul>
+              <li>Jede Mahlzeit sollte Protein haben</li>
+              <li>Mehr normales Essen, weniger random Snacks</li>
+              <li>2–3 Liter Wasser am Tag</li>
+              <li>Softdrinks und Süßkram reduzieren</li>
+              <li>Nicht perfekt essen müssen – nur konsequenter</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>🔥 Sixpack Basics</h3>
+            <ul>
+              <li>Bauch 2–3x pro Woche trainieren</li>
+              <li>Nicht dauerhaft zu viel snacken</li>
+              <li>Auf Protein und Routine achten</li>
+              <li>Definition kommt durch Training + Ernährung zusammen</li>
+              <li>Konstanz schlägt Perfektion</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card full-width">
+          <h3>🧮 Fitness Rechner</h3>
+
+          <div class="nutrition-calculator-grid">
+            <div class="form-group">
+              <label for="weightInput">Gewicht (kg)</label>
+              <input id="weightInput" type="number" placeholder="z. B. 68" />
+            </div>
+
+            <div class="form-group">
+              <label for="heightInput">Größe (cm)</label>
+              <input id="heightInput" type="number" placeholder="z. B. 178" />
+            </div>
+
+            <div class="form-group">
+              <label for="goalInput">Ziel</label>
+              <select id="goalInput">
+                <option value="maintain">Halten / Fit bleiben</option>
+                <option value="build">Muskelaufbau</option>
+                <option value="cut">Definierter / Leaner</option>
+              </select>
+            </div>
+
+            <div class="form-group button-form-group">
+              <label>&nbsp;</label>
+              <button class="action-btn calc-btn" onclick="calculateNutrition()">Berechnen</button>
+            </div>
+          </div>
+
+          <div class="nutrition-results-grid">
+            <div class="mini-card result-card">
+              <h4>BMI</h4>
+              <p id="bmiResult">—</p>
+            </div>
+            <div class="mini-card result-card">
+              <h4>Protein / Tag</h4>
+              <p id="proteinResult">—</p>
+            </div>
+            <div class="mini-card result-card">
+              <h4>Kohlenhydrate / Tag</h4>
+              <p id="carbResult">—</p>
+            </div>
+            <div class="mini-card result-card">
+              <h4>Kalorien grob</h4>
+              <p id="calorieResult">—</p>
+            </div>
+            <div class="mini-card result-card">
+              <h4>Wasser / Tag</h4>
+              <p id="waterResult">—</p>
+            </div>
+          </div>
+
+          <p class="small-note">
+            BMI ist nur ein grober Richtwert. Für euer Ziel sind Protein, Training und Konstanz wichtiger.
+          </p>
+        </div>
+
+        <div class="card full-width">
+          <h3>🍽️ Simples Alltags-System</h3>
+          <div class="nutrition-grid">
+            <div class="mini-card">
+              <h4>Frühstück</h4>
+              <p>z. B. Skyr, Joghurt, Eier, Haferflocken</p>
+            </div>
+            <div class="mini-card">
+              <h4>Mittag</h4>
+              <p>normale Mahlzeit mit Protein, nicht nur irgendwas snacken</p>
+            </div>
+            <div class="mini-card">
+              <h4>Abend</h4>
+              <p>etwas Sättigendes mit Protein und nicht komplett eskalieren</p>
+            </div>
+            <div class="mini-card">
+              <h4>Snacks</h4>
+              <p>weniger Süßkram, lieber Obst, Joghurt oder Proteinquelle</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="mission" class="section">
+        <div class="section-title">
+          <p class="eyebrow">Mission</p>
+          <h2>Warum PROJECT 90?</h2>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>🎯 Ziele</h3>
+            <ul>
+              <li>definierter Oberkörper</li>
+              <li>mehr Muskelaufbau</li>
+              <li>besserer Bauch / Core</li>
+              <li>mehr Ausdauer</li>
+              <li>fitter in den Sommer starten</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>🧠 Mindset</h3>
+            <ul>
+              <li>Nicht perfekt sein müssen</li>
+              <li>Einfach regelmäßig machen</li>
+              <li>Disziplin aufbauen</li>
+              <li>Gemeinsam motiviert bleiben</li>
+              <li>Kleine Fortschritte zählen auch</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card full-width mission-quote">
+          <h3>PROJECT 90</h3>
+          <p>
+            Kein perfekter Start. Kein perfekter Plan. Einfach anfangen, dranbleiben
+            und bis Sommer sichtbar besser werden.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
