@@ -489,3 +489,59 @@ document.addEventListener("DOMContentLoaded", async () => {
   updateUI();
   setInterval(loadRemoteState, 5000);
 });
+
+function toggleAdminPanel(){
+
+const panel = document.getElementById("adminPanel")
+
+if(panel.style.display === "flex"){
+panel.style.display = "none"
+}else{
+panel.style.display = "flex"
+}
+
+}
+
+
+function adminAddWorkout(){
+
+const password = document.getElementById("adminPassword").value
+
+if(password !== "P90ADMIN"){
+alert("Kein Admin Zugriff")
+return
+}
+
+const person = document.getElementById("adminPerson").value
+const date = document.getElementById("adminDate").value
+const type = document.getElementById("adminType").value
+
+if(!date){
+alert("Bitte Datum auswählen")
+return
+}
+
+if(!state[person].completedDates.includes(date)){
+state[person].completedDates.push(date)
+}
+
+if(type === "workout"){
+state[person].points += 10
+}
+
+if(type === "run"){
+state[person].points += 15
+}
+
+if(type === "bonus"){
+state[person].points += 20
+}
+
+saveState()
+updateUI()
+
+alert("Training nachgetragen")
+
+toggleAdminPanel()
+
+}
