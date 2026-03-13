@@ -593,3 +593,40 @@ reader.readAsText(file)
 input.click()
 
 }
+
+function renderHeatmap(){
+
+const grid = document.getElementById("heatmapGrid")
+if(!grid) return
+
+grid.innerHTML = ""
+
+const days = 60
+const today = new Date()
+
+for(let i = days; i >= 0; i--){
+
+const d = new Date(today)
+d.setDate(today.getDate() - i)
+
+const key = getLocalDateKey(d)
+
+const cell = document.createElement("div")
+cell.classList.add("heatmap-cell")
+
+const jm = state.jm.completedDates.includes(key)
+const jonas = state.jonas.completedDates.includes(key)
+
+if(jm && jonas){
+cell.classList.add("hm-team")
+}else if(jm){
+cell.classList.add("hm-jm")
+}else if(jonas){
+cell.classList.add("hm-jonas")
+}
+
+grid.appendChild(cell)
+
+}
+
+}
