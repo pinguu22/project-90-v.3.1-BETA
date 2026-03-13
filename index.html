@@ -282,7 +282,6 @@
               <button class="action-btn" onclick="addWorkout('jonas')">+ Home Workout</button>
               <button class="action-btn alt" onclick="addRun('jonas')">+ Cardio / Run</button>
               <button class="action-btn subtle" onclick="addStreakBonus('jonas')">+ Streak Bonus</button>
-              <button class="action-btn subtle" onclick="toggleAdminPanel()">Admin Recovery</button>
             </div>
             <p class="small-note">Nur 1 Check-in pro Tag möglich.</p>
           </div>
@@ -306,6 +305,7 @@
             <div class="button-group">
               <button class="action-btn danger" onclick="resetWeek()">Woche resetten</button>
               <button class="action-btn danger soft" onclick="resetAllData()">Alles zurücksetzen</button>
+               <button class="action-btn subtle" onclick="toggleAdminPanel()">Admin Recovery</button>
             </div>
             <p class="small-note">
               State wird lokal gespeichert und mit Supabase synchronisiert.
