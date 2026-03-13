@@ -507,7 +507,7 @@ function adminAddWorkout(){
 
 const password = document.getElementById("adminPassword").value
 
-if(password !== "P90ADMIN"){
+if(password !== "ADMIN2026"){
 alert("Kein Admin Zugriff")
 return
 }
