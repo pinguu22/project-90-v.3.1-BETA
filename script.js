@@ -3,9 +3,9 @@ const SUPABASE_URL = window.APP_CONFIG?.supabaseUrl;
 const SUPABASE_KEY = window.APP_CONFIG?.supabaseAnonKey;
 
 const SCHEDULED_DAYS = [1, 3, 5, 0]; // Montag, Mittwoch, Freitag, Sonntag
-const APP_VERSION = "v3.0-beta";
-const LAST_UPDATE = "09.03.2026";
-const APP_MODE = APP_ID === "project90-main" ? "Live" : "Local Test / Beta";
+const APP_VERSION = window.APP_CONFIG?.version || "v3.1-beta";
+const LAST_UPDATE = window.APP_CONFIG?.lastUpdate || "13.03.2026";
+const APP_MODE = window.APP_CONFIG?.mode || "Beta";
 
 function createDefaultState() {
   return {
