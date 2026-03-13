@@ -545,3 +545,51 @@ alert("Training nachgetragen")
 toggleAdminPanel()
 
 }
+
+function exportBackup(){
+
+const data = JSON.stringify(state, null, 2)
+
+const blob = new Blob([data], {type:"application/json"})
+
+const url = URL.createObjectURL(blob)
+
+const a = document.createElement("a")
+
+a.href = url
+a.download = "project90-backup.json"
+
+a.click()
+
+}
+
+function importBackup(){
+
+const input = document.createElement("input")
+input.type = "file"
+input.accept = "application/json"
+
+input.onchange = function(e){
+
+const file = e.target.files[0]
+
+const reader = new FileReader()
+
+reader.onload = function(){
+
+state = JSON.parse(reader.result)
+
+saveState()
+updateUI()
+
+alert("Backup erfolgreich geladen")
+
+}
+
+reader.readAsText(file)
+
+}
+
+input.click()
+
+}
