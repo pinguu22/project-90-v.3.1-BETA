@@ -282,6 +282,7 @@
               <button class="action-btn" onclick="addWorkout('jonas')">+ Home Workout</button>
               <button class="action-btn alt" onclick="addRun('jonas')">+ Cardio / Run</button>
               <button class="action-btn subtle" onclick="addStreakBonus('jonas')">+ Streak Bonus</button>
+              <button class="action-btn subtle" onclick="toggleAdminPanel()">Admin Recovery</button>
             </div>
             <p class="small-note">Nur 1 Check-in pro Tag möglich.</p>
           </div>
@@ -463,6 +464,39 @@
       </section>
     </main>
   </div>
+<div id="adminPanel" class="admin-panel">
+
+<div class="admin-card">
+
+<h3>Admin Recovery</h3>
+
+<label>Admin Passwort</label>
+<input id="adminPassword" type="password" placeholder="Passwort">
+
+<label>Person</label>
+<select id="adminPerson">
+<option value="jm">Jan-Mattes</option>
+<option value="jonas">Jonas</option>
+</select>
+
+<label>Datum</label>
+<input id="adminDate" type="date">
+
+<label>Training</label>
+<select id="adminType">
+<option value="workout">Home Workout (+10)</option>
+<option value="run">Cardio / Run (+15)</option>
+<option value="bonus">Streak Bonus (+20)</option>
+</select>
+
+<div class="admin-buttons">
+<button onclick="adminAddWorkout()">Nachtragen</button>
+<button onclick="toggleAdminPanel()">Schließen</button>
+</div>
+
+</div>
+
+</div>
 
   <script src="script.js"></script>
 </body>
