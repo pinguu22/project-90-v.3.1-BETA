@@ -238,6 +238,38 @@ async function loadRemoteState() {
   }
 }
 
+async function loadRemoteState() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/project90_states?app_id=eq.${APP_ID}&select=*`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`
+      }
+    });
+
+    const data = await res.json();
+
+    if (Array.isArray(data) && data.length) {
+      state = normalizeState(data[0].state);
+      checkWeeklyReset();
+      localStorage.setItem("project90State", JSON.stringify(state));
+    }
+
+    const sync = document.getElementById("lastSync")
+    if(sync){
+      const now = new Date()
+      sync.textContent = "Letzter Sync: " + now.toLocaleTimeString()
+    }
+
+  } catch (error) {
+    console.log("Remote load failed, using local state.");
+  }
+}
+
+
+
+
+
 async function pushRemoteState() {
   try {
     await fetch(`${SUPABASE_URL}/rest/v1/project90_states?on_conflict=app_id`, {
