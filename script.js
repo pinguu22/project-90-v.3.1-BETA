@@ -373,6 +373,17 @@ function updateUI() {
 
   document.getElementById("teamSummary").textContent = `Team Streak: ${state.teamStreak}`;
 
+  const fire = document.getElementById("streakFire")
+const streak = state.teamStreak || 0
+
+let fireLevel = "🔥"
+
+if(streak >= 4) fireLevel = "🔥🔥"
+if(streak >= 8) fireLevel = "🔥🔥🔥"
+if(streak >= 15) fireLevel = "🔥🔥🔥🔥"
+
+if(fire) fire.textContent = fireLevel
+
   updateVersionInfo();
   updateTodayWorkout();
   updateTodayStatuses();
