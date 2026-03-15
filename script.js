@@ -559,6 +559,8 @@ return
 const person = document.getElementById("adminPerson").value
 const date = document.getElementById("adminDate").value
 const type = document.getElementById("adminType").value
+const note = document.getElementById("adminNote").value
+
 
 if(!date){
 alert("Bitte Datum auswählen")
