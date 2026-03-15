@@ -4,6 +4,6 @@ window.APP_CONFIG = {
   appId: "project90-main",
 
   mode: "LIVE BETA",
-  version: "v3.1-beta",
-  lastUpdate: "13.03.2026"
+  version: "v3.2-beta",
+  lastUpdate: "15.03.2026"
 };
