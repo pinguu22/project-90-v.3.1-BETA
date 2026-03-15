@@ -582,7 +582,18 @@ state[person].points += 15
 if(type === "bonus"){
 state[person].points += 20
 }
+if(!state.adminLogs){
+state.adminLogs = []
+}
 
+state.adminLogs.push({
+person: person,
+date: date,
+type: type,
+note: note,
+created: new Date().toISOString()
+})
+  
 saveState()
 updateUI()
 
