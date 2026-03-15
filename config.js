@@ -5,5 +5,5 @@ window.APP_CONFIG = {
 
   mode: "LIVE Release Build",
   version: "v3.2",
-  lastUpdate: "15.03.2026"
+  lastUpdate: "16.03.2026"
 };
